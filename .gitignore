@@ -1,3 +1,6 @@
+# Secret Key
+*.key
+
 # Webstorm
 /.idea
 

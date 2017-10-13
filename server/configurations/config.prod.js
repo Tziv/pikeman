@@ -2,21 +2,45 @@ let config = {
     env: 'dev',
     host: 'localhost',
     port: process.env.PORT || 80,
-    authorization: {
-        activeDirectorySettings: {
-            connectionDetails: {
-                url: 'ldap://dc.domain.com',
-                baseDN: 'dc=domain,dc=com',
-                username: 'username@domain.com',
-                password: 'password'
-            }
+    activeDirectorySettings: {
+        url: 'ldap://dc.domain.com',
+        baseDN: 'dc=domain,dc=com',
+        username: 'username@domain.com',
+        password: 'password'
+    },
+    privilegeGroups: [
+        {
+            groupName: 'super user',
+            authorizationStrategies: [
+                {
+                    type: 'is_in_department',
+                    parameters: {
+                        department: 'it'
+                    }
+                },
+                {
+                    type: 'is_in_email_group',
+                    parameters: {
+                        emailGroupName: 'Super Users'
+                    }
+                }
+            ]
         },
-        privilegeGroupToAuthorizationMethod: {
-            User: 'windows_authentication',
-            Staff: 'active_directory',
-            Admin: 'active_directory'
+        {
+            groupName: 'admin',
+            authorizationStrategies: [
+                {
+                    type: 'is_in_email_group',
+                    parameters: {
+                        emailGroupName: 'Admins'
+                    },
+                    strict: true
+                }
+            ]
         }
+    ],
+    tokenProducing: {
+        tokenTTL: 1440
     }
 };
-
 module.exports = config;

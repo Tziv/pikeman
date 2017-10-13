@@ -2,9 +2,13 @@ const config = require('./config');
 const jwt = require('jsonwebtoken');
 
 class TokenProvider {
-    authorizeByAD(username, password, ADAuthorizer, options) {
-        let allowedProviders =  ADAuthorizer.getAllowedProviders(username, password, options);
-
+    constructor(secret) {
+        this.secret = secret;
+    }
+    createToken(data) {
+        return jwt.sign(data, this.secret, {
+            expiresInMinutes: config.tokenProducing.tokenTTL // expires in 24 hours
+        });
     }
 }
 
