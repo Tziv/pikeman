@@ -1,0 +1,19 @@
+{
+  "name": "pikeman",
+  "version": "1.0.0",
+  "description": "An authorization token provider written in node.js. Edit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tziv/pikeman.git"
+  },
+  "author": "Tzur Ziv <tzurziv629@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tziv/pikeman/issues"
+  },
+  "homepage": "https://github.com/Tziv/pikeman#readme"
+}
