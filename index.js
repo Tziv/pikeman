@@ -2,6 +2,9 @@ const express = require('express');
 const api = require('./server/api');
 const bodyParser = require('body-parser');
 const config = require('./server/config');
+const authorizerInitializer = require('./server/init_authorizers');
+
+const authorizers = authorizerInitializer.getAuthorizers();
 
 const app = express();
 app.set('port', config.port);

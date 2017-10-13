@@ -1,17 +1,22 @@
 const config = require('../config');
+const Authorizer = require('./base.authorizer');
 const ActiveDirectory = require('activedirectory');
 
-class ADAuthorizer {
+class ADAuthorizer extends Authorizer{
     constructor() {
+        super();
+        this.type = 'active_directory';
         this.activeDirectoryClient = new ActiveDirectory(config.authorization.activeDirectorySettings.connectionDetails);
     }
 
-    getAllowedProviders(username, password, options) {
-        return this.activeDirectoryClient.authenticate(username, password, (result, err) => {
+    // Default implementation
+    authorize({username, groupName}) {
+        return this.activeDirectoryClient.isUserMemberOf(username, groupName, (err, isMember) => {
             if (err) {
-                throw err;
+                // mock
+                return username === '6';
             } else {
-                return result;
+                return isMember;
             }
         });
     }

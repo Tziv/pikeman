@@ -4,13 +4,21 @@ const ADAuthorizer = require('./authorization_methods/active_directory.authorize
 
 const router = express.Router();
 
-const activeDirectoryAuthorizer = new ADAuthorizer();
+
 const tokenProvider = new TokenProvider();
+const activeDirectoryAuthorizer = new ADAuthorizer();
+const privilegeGroupToAuthorization = {
+
+};
+
+
+
+const authorizers = [activeDirectoryAuthorizer];
 
 router.post('/authorize?method=ad', authorizeByAD);
 
-function authorizeByAD(req, res) {
-    const {username, password}  = req.body;
+function authorize(req, res) {
+    const authorizationType = req.
 
     res.json(tokenProvider.authorizeByAD(username, password, activeDirectoryAuthorizer, options));
 }

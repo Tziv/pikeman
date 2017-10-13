@@ -9,15 +9,12 @@ let config = {
                 baseDN: 'dc=domain,dc=com',
                 username: 'username@domain.com',
                 password: 'password'
-            },
-            emailGroupMapping: {
-                elastic: 'Elastic Users',
-                hadoop: 'Hadoop Users'
             }
         },
-        providerKeywordMapping: {
-            elastic: 'elastic',
-            hadoop: 'hadoop'
+        privilegeGroupToAuthorizationMethod: {
+            User: 'windows_authentication',
+            Staff: 'active_directory',
+            Admin: 'active_directory'
         }
     }
 };
