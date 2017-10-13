@@ -4,10 +4,6 @@ const config = require('./server/config');
 const controller = require('./server/authorization.controller');
 const configValidator = require('./server/configuration_validator');
 
-if (!configValidator.validateConfigFile(config)) {
-    throw new Error('invalid configuration file');
-}
-
 const app = express();
 app.set('port', config.port);
 if (config.env === 'prod') {
@@ -16,7 +12,6 @@ if (config.env === 'prod') {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 
 app.use('/authorize', controller.authorize);
 
