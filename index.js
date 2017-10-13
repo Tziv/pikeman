@@ -17,7 +17,6 @@ if (config.env === 'prod') {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 app.use('/authorize', controller.authorize);
 
 app.listen(config.port, () => {
