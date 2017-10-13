@@ -1,7 +1,7 @@
 let config = {
     env: 'prod',
     host: 'localhost',
-    port: 80
+    port: process.env.PORT || 80
 };
 
 module.exports = config;
